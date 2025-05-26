@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: inventory-management
+  h2:
+    console.enabled: true
+  datasource:
+    url: jdbc:h2:mem:invMan
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: abc123
+    jpa:
+      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
