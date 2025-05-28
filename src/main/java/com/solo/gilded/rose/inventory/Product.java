@@ -23,4 +23,8 @@ public class Product {
 
         return (int) ChronoUnit.DAYS.between(purchasedDate, date);
     }
+
+    public String getName() {
+        return name;
+    }
 }

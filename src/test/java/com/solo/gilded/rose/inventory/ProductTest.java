@@ -52,9 +52,6 @@ class ProductTest {
     public void testNullInputForDate(){
         Product product = new Product("Phone");
         assertThrows(IllegalArgumentException.class, ()->product.daysPassed(null));
-
-        Product product2 = new Product("Tablet", LocalDate.of(2025,5,26));
-        assertThrows(IllegalArgumentException.class, ()->product.daysPassed(LocalDate.of(2025,5,25)));
     }
 
     //E - Exception validate when the input is before the purchase date
