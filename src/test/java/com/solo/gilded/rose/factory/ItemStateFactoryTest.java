@@ -18,7 +18,7 @@ class ItemStateFactoryTest {
     //O - One input should return correct instance of quality state
     @Test
     public void testOneInputShouldReturnCorrectState(){
-        assertInstanceOf(NormalQualityState.class, ItemStateFactory.createQualityState(ProductType.AGED_BRIE));
+        assertInstanceOf(AgedBrieQualityState.class, ItemStateFactory.createQualityState(ProductType.AGED_BRIE));
     }
 
     //M - Many input should return correct instances of state
