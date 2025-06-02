@@ -4,10 +4,10 @@ import com.solo.gilded.rose.entity.Product;
 
 import java.time.LocalDate;
 
-public class SulfurasQualityState implements QualityState{
+public class SulfurasQualityState implements QualityState {
     @Override
     public int calculateQuality(Product product, int sellIn, int quality) {
-        return calculateQuality(product,sellIn,quality,LocalDate.now());
+        return calculateQuality(product, sellIn, quality, LocalDate.now());
     }
 
     @Override

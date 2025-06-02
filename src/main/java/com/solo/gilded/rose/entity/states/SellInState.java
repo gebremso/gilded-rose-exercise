@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 public interface SellInState {
     int calculateSellIn(Product product, int sellIn);
+
     int calculateSellIn(Product product, int sellIn, LocalDate date);
 
 }

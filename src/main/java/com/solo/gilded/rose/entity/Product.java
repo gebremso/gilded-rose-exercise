@@ -10,6 +10,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+
 @Entity
 public class Product implements Serializable {
     @Serial
@@ -25,25 +26,25 @@ public class Product implements Serializable {
     }
 
     public Product(String name) throws UnsupportedProductException {
-        this(name,ProductType.valueFrom(name),LocalDate.now());
+        this(name, ProductType.valueFrom(name), LocalDate.now());
     }
 
     public Product(String name, ProductType productType) {
-        this(name,productType,LocalDate.now());
+        this(name, productType, LocalDate.now());
     }
 
     public Product(String name, LocalDate purchasedDate) throws UnsupportedProductException {
-      this(name,ProductType.valueFrom(name),purchasedDate);
+        this(name, ProductType.valueFrom(name), purchasedDate);
     }
 
-    public Product(String name,ProductType productType, LocalDate purchasedDate) {
+    public Product(String name, ProductType productType, LocalDate purchasedDate) {
         this.name = name;
         this.purchasedDate = purchasedDate;
         this.productType = productType;
     }
 
-    public int daysPassed(LocalDate date){
-        if(date == null || date.isBefore(purchasedDate))
+    public int daysPassed(LocalDate date) {
+        if (date == null || date.isBefore(purchasedDate))
             throw new IllegalArgumentException("The wrong date format is provided.");
 
         return (int) ChronoUnit.DAYS.between(purchasedDate, date);

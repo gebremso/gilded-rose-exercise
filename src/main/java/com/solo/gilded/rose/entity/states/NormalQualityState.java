@@ -10,12 +10,12 @@ public class NormalQualityState implements QualityState {
 
     @Override
     public int calculateQuality(Product product, int sellIn, int quality) {
-        return calculateQuality(product,sellIn,quality,LocalDate.now());
+        return calculateQuality(product, sellIn, quality, LocalDate.now());
     }
 
     @Override
     public int calculateQuality(Product product, int sellIn, int quality, LocalDate date) {
-        int multiplier = sellIn< 0 ? 2 : product.getProductType().getFactor();
-        return Math.max(calculate(product.getProductType().getOperation(), quality,(product.daysPassed(date) * multiplier)), 0);
+        int multiplier = sellIn < 0 ? 2 : product.getProductType().getFactor();
+        return Math.max(calculate(product.getProductType().getOperation(), quality, (product.daysPassed(date) * multiplier)), 0);
     }
 }

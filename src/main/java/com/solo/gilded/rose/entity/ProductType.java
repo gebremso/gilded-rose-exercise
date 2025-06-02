@@ -7,9 +7,9 @@ import java.util.Arrays;
 public enum ProductType {
     NORMAL("Normal", Operation.DECREASE, 1),
     AGED_BRIE("Aged Brie", Operation.INCREASE, 1),
-    SULFURAS("Sulfuras", Operation.OTHER,0),
-    BACKSTAGE_PASSES("Backstage passes", Operation.INCREASE,1),
-    CONJURED("Conjured", Operation.DECREASE,2);
+    SULFURAS("Sulfuras", Operation.OTHER, 0),
+    BACKSTAGE_PASSES("Backstage passes", Operation.INCREASE, 1),
+    CONJURED("Conjured", Operation.DECREASE, 2);
 
     private final String name;
     private final int factor;
@@ -36,9 +36,9 @@ public enum ProductType {
 
     public static ProductType valueFrom(String name) throws UnsupportedProductException {
         return Arrays.stream(ProductType.values())
-                .filter(productType ->  productType.getName().equalsIgnoreCase(name))
+                .filter(productType -> productType.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElseThrow(()-> new UnsupportedProductException(name+" is INVALID product"));
+                .orElseThrow(() -> new UnsupportedProductException(name + " is INVALID product"));
     }
 
 

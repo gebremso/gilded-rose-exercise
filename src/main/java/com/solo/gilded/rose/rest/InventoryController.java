@@ -25,7 +25,7 @@ public class InventoryController {
 
 
     @GetMapping("/items")
-    public ResponseEntity<?> fetchAllItems(){
+    public ResponseEntity<?> fetchAllItems() {
         return ResponseEntity.ok(itemService.fitchAllItems());
     }
 
@@ -34,10 +34,10 @@ public class InventoryController {
         try {
             Item item = new Item(productRecord.name(), productRecord.sellIn(), productRecord.quality());
             Optional<Item> savedItem = itemService.save(item);
-            if(savedItem.isPresent()){
-                return ResponseEntity.ok(new ProductResult(savedItem.get().getId(),savedItem.get().getProduct().getName(),savedItem.get().getProduct().getPurchasedDate()));
+            if (savedItem.isPresent()) {
+                return ResponseEntity.ok(new ProductResult(savedItem.get().getId(), savedItem.get().getProduct().getName(), savedItem.get().getProduct().getPurchasedDate()));
             }
-            return ResponseEntity.ok( "Item already exist" );
+            return ResponseEntity.ok("Item already exist");
         } catch (UnsupportedProductException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
@@ -57,18 +57,18 @@ public class InventoryController {
     @GetMapping("/item/{id}")
     public ResponseEntity<?> findItemById(@PathVariable Long id) {
         Optional<ProductRecord> item = itemService.findById(id);
-        if(item.isPresent()){
+        if (item.isPresent()) {
             return ResponseEntity.ok(item.get());
         }
         return ResponseEntity
                 .status(HttpStatus.NOT_FOUND)
-                .body("Item does NOT exist." );
+                .body("Item does NOT exist.");
     }
 
     @GetMapping("/itemsAsOf")
     public ResponseEntity<?> getItemsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         Optional<List<ProductRecord>> records = itemService.findItemsAsOfDate(date);
-        if(records.isPresent()){
+        if (records.isPresent()) {
             return ResponseEntity.of(records);
         }
         return ResponseEntity
@@ -77,7 +77,7 @@ public class InventoryController {
     }
 
     @GetMapping("/ping")
-    public String ping(){
+    public String ping() {
         return "Success...";
     }
 

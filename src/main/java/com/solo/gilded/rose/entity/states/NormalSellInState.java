@@ -6,12 +6,12 @@ import com.solo.gilded.rose.entity.ProductType;
 
 import java.time.LocalDate;
 
-import static com.solo.gilded.rose.util.StateCalculatorUtil.*;
+import static com.solo.gilded.rose.util.StateCalculatorUtil.calculate;
 
-public class NormalSellInState implements SellInState{
+public class NormalSellInState implements SellInState {
     @Override
     public int calculateSellIn(Product product, int sellIn) {
-        return calculateSellIn(product,sellIn,LocalDate.now());
+        return calculateSellIn(product, sellIn, LocalDate.now());
     }
 
     @Override
@@ -19,7 +19,7 @@ public class NormalSellInState implements SellInState{
         return calculate(
                 Operation.DECREASE,
                 sellIn,
-                (product.daysPassed(date)* ProductType.NORMAL.getFactor())
+                (product.daysPassed(date) * ProductType.NORMAL.getFactor())
         );
     }
 }
