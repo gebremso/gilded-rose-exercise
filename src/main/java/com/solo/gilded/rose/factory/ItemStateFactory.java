@@ -10,7 +10,7 @@ import static com.solo.gilded.rose.entity.ProductType.NORMAL;
 public class ItemStateFactory {
 
     public static QualityState createQualityState(ProductType productType) {
-        QualityState qualityState = null;
+        QualityState qualityState;
         switch (Objects.requireNonNullElse(productType, NORMAL)) {
             case AGED_BRIE -> qualityState = new AgedBrieQualityState();
             case SULFURAS -> qualityState = new SulfurasQualityState();
@@ -22,7 +22,7 @@ public class ItemStateFactory {
     }
 
     public static SellInState createSellInState(ProductType productType) {
-        SellInState sellInState = null;
+        SellInState sellInState;
         switch (Objects.requireNonNullElse(productType, NORMAL)) {
             case SULFURAS -> sellInState = new SulfurasSellInState();
             default -> sellInState = new NormalSellInState();
