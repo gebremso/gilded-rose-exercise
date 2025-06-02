@@ -1,0 +1,21 @@
+body{
+    padding-top:0px;
+}
+
+.starter-template {
+    padding: 40px 15px;
+    text-align: center;
+}
+
+a {
+    color: #ffffff;
+    padding-left: 1rem;
+}
+
+.bg-dark {
+    background-color: #023451!important;
+}
+
+a, img {
+    width: 15rem;
+}

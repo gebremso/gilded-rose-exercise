@@ -4,10 +4,13 @@ import com.solo.gilded.rose.entity.Item;
 import com.solo.gilded.rose.exceptions.UnsupportedProductException;
 import com.solo.gilded.rose.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -48,6 +51,29 @@ public class InventoryController {
                     .status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body("Something went wrong");
         }
+    }
+
+
+    @GetMapping("/item/{id}")
+    public ResponseEntity<?> findItemById(@PathVariable Long id) {
+        Optional<ProductRecord> item = itemService.findById(id);
+        if(item.isPresent()){
+            return ResponseEntity.ok(item.get());
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Item does NOT exist." );
+    }
+
+    @GetMapping("/itemsAsOf")
+    public ResponseEntity<?> getItemsByDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        Optional<List<ProductRecord>> records = itemService.findItemsAsOfDate(date);
+        if(records.isPresent()){
+            return ResponseEntity.of(records);
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body("Error during item retrieval.");
     }
 
     @GetMapping("/ping")

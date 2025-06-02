@@ -42,6 +42,10 @@ public class Item implements Serializable {
         this.product = new Product(name,purchaseDate);
         this.sellIn = sellIn;
         setQuality(quality);
+        initState();
+    }
+
+    public void initState(){
         this.qualityState = ItemStateFactory.createQualityState(this.product.getProductType());
         this.sellInState = ItemStateFactory.createSellInState(this.product.getProductType());
     }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+
+<div th:replace="common/header :: common-navbar"/>
+
+<div>
+    <div class="container mb-5">
+        <div >
+            <div>
+                <div>
+                    <div th:replace="common/sections :: item-detail-view"/>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div  th:replace="common/header :: before-body-scripts"/>
+</body>
+</html>

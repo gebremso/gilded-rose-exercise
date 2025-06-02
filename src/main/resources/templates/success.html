@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+
+<div th:replace="common/header :: common-navbar"/>
+<div class="container">
+    <div id="resultMessage" class="m-4 p-2">
+        <p><strong>Item ID { </strong> <span th:text="${itemId}"></span><strong> } successfully added</strong></p>
+    </div>
+</div>
+
+
+<div  th:replace="common/header :: before-body-scripts"/>
+</body>
+</html>

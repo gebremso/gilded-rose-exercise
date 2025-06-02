@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="common/header :: common-header"/>
+
+<body>
+
+<div th:replace="common/header :: common-navbar"/>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 m-4">
+            <form class="needs-validation" id="submitItem" action="">
+                <fieldset id="fieldset">
+                    <div class="container mb-5">
+                        <div >
+                            <div>
+                                <div>
+                                    <div th:replace="common/sections :: item-input-form"/>
+                                </div>
+                                <div class="btn btn-lg">
+                                    <button type="submit" class="form-control btn btn-sm bg-primary"  id="submitform">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<div  th:replace="common/header :: before-body-scripts"/>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="item-input-form" >
+   <!-- <form class="needs-validation" novalidate>-->
+        <div class="col-4">
+            <h3><u>Add Item Page</u></h3>
+            <div class="col-md-6 mb-3">
+                <label for="itemName">Product Name</label>
+                <input type="text" class="form-control" name="name" id="itemName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid product name is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="sellIn">Sell In By</label>
+                <input type="text" class="form-control" name="sellIn" id="sellIn" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                    Valid SellIn(int) value is required.
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="quality">Quality</label>
+                <div class="input-group">
+                    <input type="text" class="form-control" name="quality" id="quality" placeholder="" required>
+                </div>
+                <div class="invalid-feedback">
+                    Valid Quality(int) value is required.
+                </div>
+            </div>
+            </div>
+        </div>
+        <hr class="mb-4">
+  <!--  </form>-->
+</div>
+
+
+<div th:fragment="item-detail-view" >
+   <!-- <form class="needs-validation" novalidate>-->
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <h3 class="mt-3"><u>View Items by Date</u></h3>
+
+                <label for="filterDate">Select Date:</label>
+                <input type="date" id="filterDate" name="filterDate">
+                <button class="m-2" id="loadItemsBtn">Load Items</button>
+
+                <table class="table table-striped" id="itemTable">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Sell In</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <tbody id="itemTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
+
+
+
+</html>
