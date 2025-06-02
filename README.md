@@ -40,6 +40,16 @@ The app should be available at:
 localhost:8080/
 ```
 
+#### Finish: Stop the Application
+```bash
+mvn spring-boot:stop
+```
+
+#### Run Test
+```bash
+mvn test
+```
+
 ### API EndPoints
 | Method | URL                              | Description                    |
 | ------ |----------------------------------|--------------------------------|
