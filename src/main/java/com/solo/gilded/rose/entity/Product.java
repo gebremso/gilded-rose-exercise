@@ -1,14 +1,28 @@
 package com.solo.gilded.rose.entity;
 
 import com.solo.gilded.rose.exceptions.UnsupportedProductException;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+@Entity
+public class Product implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private LocalDate purchasedDate;
+    private ProductType productType;
 
-public class Product {
-    private final String name;
-    private final LocalDate purchasedDate;
-    private final ProductType productType;
+    protected Product() {
+    }
 
     public Product(String name) throws UnsupportedProductException {
         this(name,ProductType.valueFrom(name),LocalDate.now());

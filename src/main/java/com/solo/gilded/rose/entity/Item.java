@@ -1,20 +1,38 @@
 package com.solo.gilded.rose.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solo.gilded.rose.entity.states.QualityState;
 import com.solo.gilded.rose.entity.states.SellInState;
 import com.solo.gilded.rose.exceptions.UnsupportedProductException;
 import com.solo.gilded.rose.factory.ItemStateFactory;
+import jakarta.persistence.*;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
+@Entity
+public class Item implements Serializable {
 
-public class Item {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Product product;
     private int sellIn;
     private int quality;
-    private final QualityState qualityState;
-    private final SellInState sellInState;
+    @JsonIgnore
+    @Transient
+    private QualityState qualityState;
+    @JsonIgnore
+    @Transient
+    private SellInState sellInState;
 
+    protected Item(){
+    }
 
     public Item(String name, int sellIn, int quality) throws UnsupportedProductException {
         this(name,sellIn,quality,LocalDate.now());
@@ -75,4 +93,11 @@ public class Item {
         this.quality = quality;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
 }
