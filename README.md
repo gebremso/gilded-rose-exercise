@@ -46,11 +46,11 @@ localhost:8080/
 | POST   | `/api/addItem`                   | Add a new item (via JSON body) |
 | GET    | `/api/items`                     | Get all items                  |
 | GET    | `/api/itemsAsOf?date=YYYY-MM-DD` | Filter items by date           |
-| GET    | `/item/{id}`                     | Get item based on id           |
+| GET    | `/api/item/{id}`                 | Get item based on id           |
 
 
 ### UI Features
-The application includes a simple front-end interface that interacts with the backend APIs using HTML and JavaScript (Fetch API and jQuery). Below are the key features of the UI:
+The application includes a simple front-end interface that interacts with the backend APIs using HTML and JavaScript (Bootstrap,Fetch API and jQuery). Below are the key features of the UI:
 
 #### Manage Item Page
 **Purpose**:  
