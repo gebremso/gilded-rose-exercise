@@ -43,9 +43,9 @@ public class Product implements Serializable {
         this.productType = productType;
     }
 
-    public int daysPassed(LocalDate date) {
+    public int daysPassed(LocalDate date) throws IllegalArgumentException{
         if (date == null || date.isBefore(purchasedDate))
-            throw new IllegalArgumentException("The wrong date format is provided.");
+            throw new IllegalArgumentException("Date provided: '"+date+"' is null or is before the purchase date.");
 
         return (int) ChronoUnit.DAYS.between(purchasedDate, date);
     }
