@@ -34,7 +34,8 @@ public class ItemService {
     }
 
     public Optional<Item> save(Item item) {
-        if (!itemRepository.existsByProduct_Name(item.getProduct().getName())) {
+        if (!itemRepository.existsByProduct_Name(item.getProduct().getName())
+                || !item.equals(findItemByName(item.getProduct().getName()))) {
             return Optional.of(itemRepository.save(item));
         }
         return Optional.empty();

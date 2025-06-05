@@ -3,13 +3,13 @@ package com.solo.gilded.rose.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.solo.gilded.rose.entity.states.QualityState;
 import com.solo.gilded.rose.entity.states.SellInState;
-import com.solo.gilded.rose.exceptions.UnsupportedProductException;
 import com.solo.gilded.rose.factory.ItemStateFactory;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Entity
 public class Item implements Serializable {
@@ -35,11 +35,11 @@ public class Item implements Serializable {
     protected Item() {
     }
 
-    public Item(String name, int sellIn, int quality) throws UnsupportedProductException {
+    public Item(String name, int sellIn, int quality) {
         this(name, sellIn, quality, LocalDate.now());
     }
 
-    public Item(String name, int sellIn, int quality, LocalDate purchaseDate) throws UnsupportedProductException {
+    public Item(String name, int sellIn, int quality, LocalDate purchaseDate)  {
         this.product = new Product(name, purchaseDate);
         this.sellIn = sellIn;
         setQuality(quality);
@@ -105,4 +105,18 @@ public class Item implements Serializable {
     public Long getId() {
         return id;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return sellIn == item.sellIn && quality == item.quality && Objects.equals(product, item.product);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(product, sellIn, quality);
+    }
+
 }

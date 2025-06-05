@@ -1,7 +1,5 @@
 package com.solo.gilded.rose.entity;
 
-import com.solo.gilded.rose.exceptions.UnsupportedProductException;
-
 import java.util.Arrays;
 
 public enum ProductType {
@@ -34,11 +32,11 @@ public enum ProductType {
     }
 
 
-    public static ProductType valueFrom(String name) throws UnsupportedProductException {
+    public static ProductType valueFrom(String name) {
         return Arrays.stream(ProductType.values())
                 .filter(productType -> productType.getName().equalsIgnoreCase(name))
                 .findFirst()
-                .orElseThrow(() -> new UnsupportedProductException(name + " is INVALID product"));
+                .orElseThrow(() -> new RuntimeException(name + " is INVALID product"));
     }
 
 

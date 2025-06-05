@@ -1,7 +1,6 @@
 package com.solo.gilded.rose.rest;
 
 import com.solo.gilded.rose.entity.Item;
-import com.solo.gilded.rose.exceptions.UnsupportedProductException;
 import com.solo.gilded.rose.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api")
@@ -29,29 +29,54 @@ public class InventoryController {
         return ResponseEntity.ok(itemService.fitchAllItems());
     }
 
+    public List<Item> fitchAllItems() {
+        return itemService.fitchAllItems();
+    }
+
+    public Item findItemByName(String name) {
+        return itemService.findItemByName(name);
+    }
+
+    public Iterable<Item> saveAll(List<Item> items) {
+        return itemService.saveAll(items);
+    }
+
+    public Optional<Item> save(Item item) {
+        return itemService.save(item);
+    }
+
+    public Optional<ProductRecord> findById(Long id) {
+        return itemService.findById(id);
+    }
+
+    public Optional<List<ProductRecord>> findItemsAsOfDate(LocalDate date) {
+        return itemService.findItemsAsOfDate(date);
+    }
+
+    @PostMapping("/addItems")
+    public ResponseEntity<?> addItems(@RequestBody List<ProductRecord> productRecords){
+
+        List<Item> items = productRecords
+                .stream()
+                .map(p -> new Item(p.name(), p.sellIn(), p.quality()))
+                .collect(Collectors.toList());
+
+        Iterable<Item> savedList = itemService.saveAll(items);
+
+        return ResponseEntity.ok(savedList);
+    }
+
     @PostMapping("/addItem")
-    public ResponseEntity<?> addItem(@RequestBody ProductRecord productRecord) {
-        try {
+    public ResponseEntity<?> addItem(@RequestBody ProductRecord productRecord)  {
             Item item = new Item(productRecord.name(), productRecord.sellIn(), productRecord.quality());
             Optional<Item> savedItem = itemService.save(item);
             if (savedItem.isPresent()) {
                 return ResponseEntity.ok(new ProductResult(savedItem.get().getId(), savedItem.get().getProduct().getName(), savedItem.get().getProduct().getPurchasedDate()));
             }
             return ResponseEntity.ok("Item already exist");
-        } catch (UnsupportedProductException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("Unsupported product type: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity
-                    .status(HttpStatus.BAD_REQUEST)
-                    .body("Invalid input: " + e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Something went wrong");
-        }
     }
+
+
 
 
     @GetMapping("/item/{id}")

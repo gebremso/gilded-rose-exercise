@@ -1,6 +1,5 @@
 package com.solo.gilded.rose.entity;
 
-import com.solo.gilded.rose.exceptions.UnsupportedProductException;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,6 +9,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 @Entity
 public class Product implements Serializable {
@@ -25,7 +25,7 @@ public class Product implements Serializable {
     protected Product() {
     }
 
-    public Product(String name) throws UnsupportedProductException {
+    public Product(String name)  {
         this(name, ProductType.valueFrom(name), LocalDate.now());
     }
 
@@ -33,7 +33,7 @@ public class Product implements Serializable {
         this(name, productType, LocalDate.now());
     }
 
-    public Product(String name, LocalDate purchasedDate) throws UnsupportedProductException {
+    public Product(String name, LocalDate purchasedDate)  {
         this(name, ProductType.valueFrom(name), purchasedDate);
     }
 
@@ -60,5 +60,18 @@ public class Product implements Serializable {
 
     public LocalDate getPurchasedDate() {
         return purchasedDate;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Objects.equals(name, product.name) && Objects.equals(purchasedDate, product.purchasedDate) && productType == product.productType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, purchasedDate, productType);
     }
 }
