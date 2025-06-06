@@ -3,8 +3,9 @@ package com.solo.gilded.rose.util;
 import com.solo.gilded.rose.entity.Operation;
 import org.junit.jupiter.api.Test;
 
-import static com.solo.gilded.rose.util.StateCalculatorUtil.*;
-import static org.junit.jupiter.api.Assertions.*;
+import static com.solo.gilded.rose.util.StateCalculatorUtil.calculate;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class StateCalculatorUtilTest {
 

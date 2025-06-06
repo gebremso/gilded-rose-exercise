@@ -4,7 +4,8 @@ import com.solo.gilded.rose.entity.ProductType;
 import com.solo.gilded.rose.entity.states.*;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 
 class ItemStateFactoryTest {
