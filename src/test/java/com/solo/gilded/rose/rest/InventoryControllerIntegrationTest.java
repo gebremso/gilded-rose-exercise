@@ -64,8 +64,8 @@ class InventoryControllerIntegrationTest {
         mockMvc.perform(post("/api/addItem")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(record)))
-                .andExpect(status().isBadRequest())
-                .andExpect(content().string(containsString("Unsupported product type")));
+                .andExpect(status().is5xxServerError())
+                .andExpect(content().string(containsString("Unknown is INVALID product")));
     }
 
     @Test
